@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02</title>
+    <link type="text/css" rel="stylesheet" href="reset.css"/>
+    <style type="text/css">
+        #cartTable{margin:30px auto; border-collapse: collapse;}
+        td,th{padding:5px 10px;}
+        .txtCnt{width:30px; margin:0px 5px;}
+        button{padding:5px;}
+        .total{font-size:18px; color:darkred; font-weight:800;}
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div class="container" id="app" >
+    <div class="panel panel-default" >
+
+        <table class="table table-bordered text-center" v-if="arr.length != 0">
+            <tr>
+                <th>ID</th>
+                <th>订单编号</th>
+                <th>商品名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+
+            <tr v-for="(item,index) in arr">
+                <td>{{index+1}}</td>
+                <td>{{item.id}}</td>
+                <td >{{item.name}}</td>
+                <td>{{item.price}}元</td>
+
+                <td>
+                    <div class="input-group">
+                        <span class="input-group-addon" @click="sub(index)">-</span>
+                        <input type="text" v-model="item.amount" class="form-control"/>
+                        <span class="input-group-addon" @click="add(index)">+</span>
+                    </div>
+                </td>
+                <td>{{item.amount * item.price}}元</td>
+                <td><button class="btn btn-danger" data-toggle="modal" data-target="#layer" @click="nowIndex=index">删除</button></td>
+            </tr>
+            <tr >
+                <td>总价为:</td>
+                <td colspan="5" >{{totalPrice}}元</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        data:{
+            totalPrice : 0,
+            nowIndex :-10,
+            arr:[
+                {id:'0001',name:'iphoneX',amount:1,price:6188},
+                {id:'0002',name:'华为p30',amount:2,price:5934},
+                {id:'0003',name:'小米RedmiBook',amount:1,price:4299},
+                {id:'0004',name:'华为畅享9e',amount:3,price:799}
+            ],message:"",
+        },
+        methods:{
+            removeM:function(index_p){
+                if(index_p < 0){
+                    this.arr = [];
+                }else{
+                    this.arr.splice(index_p,1);
+                }
+                this.clac();
+            },
+            add : function(index_p){
+                this.arr[index_p].amount++;
+                this.clac();
+            },
+            sub : function (index_p){
+
+                if( this.arr[index_p].amount >= 1){
+
+                    this.arr[index_p].amount--;
+                    this.clac();
+                }else{
+                    if(confirm("您确定删除这件商品吗?")){
+                        this.arr.splice(index_p,1);
+                    }
+                }
+            },
+            clac:function(){
+                this.totalPrice = 0;
+                var count = this.arr.length;
+                for(var i = 0; i < count;i++){
+                    this.totalPrice += this.arr[i].price * this.arr[i].amount;
+                }
+            }
+        }
+
+    });
+    vue_s.clac();
+</script>
+
+</body>
+</html>

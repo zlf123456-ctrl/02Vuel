@@ -1,0 +1,17 @@
+{desc:'蓝色【三档强劲风力-升级静音版】带底座',
+imgUrl:'img/blue.jpg',
+imgBigUrl:'img/blue-big.jpg'},
+{desc:'粉色【三档强劲风力-升级静音版】带底座',
+imgUrl:'img/pink.jpg',
+imgBigUrl:'img/pink-big.jpg'},
+{desc:'白色【三档强劲风力-升级静音版】带底座',
+imgUrl:'img/white.jpg',
+imgBigUrl:'img/white-big.jpg'},
+{desc:'灰色【三档强劲风力-升级静音版】带底座',
+imgUrl:'img/gray.jpg',
+imgBigUrl:'img/gray-big.jpg'}
+------------------------------------------------
+{id:'0001',name:'iphoneX',count:1,price:6188},
+{id:'0002',name:'华为p30',count:2,price:5934},
+{id:'0003',name:'小米RedmiBook',count:1,price:4299},
+{id:'0004',name:'华为畅享9e',count:3,price:799}

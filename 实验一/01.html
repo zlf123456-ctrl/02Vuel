@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01</title>
+    <script src="vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .Border{
+            border: 2px solid #5c6bee;
+        }
+        #app {
+            width: 750px;
+            margin: 50px auto;
+        }
+        #app > div {
+            width: 370px;
+            height: 490px;
+            float: left;
+        }
+        ul >li >div >img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .mian{
+            width: 450px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div :class="str">
+    <p>颜色选择</p>
+    <div>
+        <img :src="font[current].url" width="350px" height="350px" >
+    </div>
+    </div>
+    <div>
+        <ul>
+            <li v-for="(item,index) in font" :class={'Border':current==index} @click="dClick(item,index)" >
+                <div>
+                    <img :src="item.url" :alt="item.name">
+                    <span>{{item.name}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                font: [
+                    {
+                        name: "蓝色【三档强劲风力-升级静音版】带底座",
+                        url: "img/1.jpg"
+                    },
+                    {
+                        name: "【尊贵版--超静音大风力可充电】--薄荷绿",
+                        url: "img/2.jpg"
+                    },
+                    {
+                        name: "【尊贵版 -超静音大风力可充电]--冰川白",
+                        url: "img/3.jpg"
+                    },
+                    {
+                        name: "【尊贵版 -超静音大风力可充电]--清新蓝",
+                        url: "img/4.jpg"
+                    },
+                ],
+                str:'mian',
+                current:0
+            }
+        },
+        methods:{
+            dClick(item,index){
+                this.current = index
+            }
+        }
+    })
+</script>
+</body>
+</html>
+
